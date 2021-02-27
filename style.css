@@ -1,0 +1,272 @@
+/*---------------------------------------- CSS VARIABLES ---------------------------------------------------*/
+
+:root{
+    --background-color: linear-gradient(to right, #00a2ff, #0072ff);
+    --complete-color: linear-gradient(to right, #52c234, #061700);
+    --delete-color: linear-gradient(to right, #f00000, #dc281e);
+    --task-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+/*---------------------------------------- CSS VARIABLES ---------------------------------------------------*/
+
+
+/*---------------------------------------- REMOVE DEFAULTS -------------------------------------------------*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*,*:focus,*:hover{
+    outline:none;
+}
+
+/*---------------------------------------- REMOVE DEFAULTS -------------------------------------------------*/
+
+
+/*---------------------------------------------- BODY ------------------------------------------------------*/
+
+body{
+    background: var(--background-color);
+    color: white;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+}
+
+/*---------------------------------------------- BODY ------------------------------------------------------*/
+
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 5vh auto auto auto 5vh;
+    grid-template-areas: 
+    ". . . . ."
+    ". h h h ."
+    ". f f f ."
+    ". t t t ."
+    ". . . . ."
+}
+
+.header{
+    grid-area: h;
+}
+
+.form{
+    grid-area: f;
+}
+
+.todo-container{
+    grid-area: t;
+}
+
+/*---------------------------------------- HEADER AND FORMS ------------------------------------------------*/
+
+header{
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 3em;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+}
+
+form input, form button{
+    padding: 0.7rem;
+    font-size: 1.5rem;
+    border: none;
+}
+
+form input{
+    width: 60%;
+}
+
+form button{
+    color: deepskyblue;
+    cursor: pointer;
+    background: white;
+    transition: background 0.3s ease;
+}
+
+form button:hover{
+    background: deepskyblue;
+    color: white;
+}
+
+/*---------------------------------------- HEADER AND FORMS ------------------------------------------------*/
+
+
+/*------------------------------------------- TODO LISTS ---------------------------------------------------*/
+
+.todo-container{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list{
+    width: 70%;
+    list-style: none;
+}
+
+.todo{
+    margin: 1rem;
+    background-color: white;
+    color: black;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+.todo:hover{
+    box-shadow: var(--task-shadow);
+    transform: scale(1.1);
+}
+
+.todo li{
+    flex: 1;
+    overflow: hidden;
+}
+
+.todo li:hover{
+    overflow: auto;
+}
+
+.trash-btn, .complete-btn{
+    border: none;
+    padding: 0.4rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 1rem;
+}
+
+.complete-btn{
+    color: rgb(3, 202, 13);
+    background: white;
+}
+
+.complete-btn:hover{
+    color: white;
+    background:rgb(3, 202, 13);
+}
+
+.trash-btn{
+    color: red;
+    background: white;
+}
+
+.trash-btn:hover{
+    color: white;
+    background: var(--delete-color);
+}
+
+.todo-item{
+    padding: 0.4rem 0.8rem;
+}
+
+.fa-trash, .fa-check{
+    pointer-events: none;
+}
+
+.completed{
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.fall{
+    transform: rotateZ(20deg) translateY(8rem);
+    opacity: 0;
+}
+
+/*------------------------------------------- TODO LISTS ---------------------------------------------------*/
+
+
+/*----------------------------------------- SELECT OPTIONS -------------------------------------------------*/
+
+select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+
+.select{
+    margin-left: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select{
+    color: black;
+    font-weight: bold;
+    width: 8em;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+.select::after{
+    content: "\25BC";
+    position: absolute;
+    background-color: deepskyblue;
+    top: 0;
+    right: 0;
+    padding: 1rem 0.8rem;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.select:hover::after{
+    background: white;
+    color: deepskyblue;
+}
+
+/*----------------------------------------- SELECT OPTIONS -------------------------------------------------*/
+
+
+@media screen and (max-width:700px){
+    .main-container{
+        grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    .todo-button{
+        position: absolute;
+        right: 0%;
+        top: 0%;
+        z-index: 99;
+    }
+
+    .select{
+        margin-top: 5%;
+    }
+
+    .todo-input{
+        width: 100%;
+    }
+
+    .todo-list{
+        width: 90%;
+    }
+
+    .todo li{
+        overflow: hidden;
+    }
+
+    .todo:hover{
+        transform: scale(1);
+    }
+}
